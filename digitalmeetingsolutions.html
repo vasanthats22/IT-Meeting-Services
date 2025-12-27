@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Digital Meeting Solutions</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+html, body { width: 100%; max-width: 100%; overflow-x: hidden; background: #f5f6fa; }
+
+/* HERO */
+.hero {
+  background: url('itm1.webp') center/cover no-repeat;
+  padding: 90px 20px;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+.hero .inner {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.hero h1 { font-size: 2.7rem; margin-bottom: 15px; }
+.hero p { font-size: 1.1rem; opacity: .9; }
+
+/* SECTION */
+.section { max-width: 1200px; margin: 60px auto; padding: 0 15px; }
+.section-title { text-align: center; margin-bottom: 40px; }
+.section-title h2 { font-size: 2rem; margin-bottom: 10px; color: #222; }
+.section-title p { color: #555; }
+
+/* GRID */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 20px;
+  justify-items: center;
+}
+.card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: .3s ease;
+  width: 100%;
+  max-width: 300px;
+}
+.card:hover { transform: translateY(-6px); }
+.card i { font-size: 2.3rem; color: #1565c0; margin-bottom: 12px; display:block; }
+.card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+.card p { color: #444; line-height: 1.5; }
+
+/* IMAGE SPLIT */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  max-width: 100%;
+  margin: 0 auto;
+}
+.split img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.split .content {
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.split .content h3 { font-size: 1.8rem; margin-bottom: 15px; color: #222; text-align: left; }
+.split .content p { color: #555; line-height: 1.6; margin-bottom: 10px; }
+
+/* RESPONSIVE */
+@media(max-width:992px){
+  .hero h1 { font-size: 2.2rem; }
+  .hero p { font-size: 1rem; }
+  .split { grid-template-columns: 1fr; }
+  .split .content h3 { text-align: center; }
+  .split .content p { text-align: center; }
+}
+@media(max-width:480px){
+  .hero { padding: 60px 15px; }
+  .hero h1 { font-size: 1.8rem; }
+  .hero p { font-size: 0.95rem; }
+  .card { max-width: 100%; padding: 20px; }
+  .split .content { padding: 20px; }
+}
+
+/* ===== ADVANCED LOADER ===== */
+#advanced-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0b1a33;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.loader-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-ring {
+  width: 120px;
+  height: 120px;
+  border: 4px solid #00aaff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ringRotate 1.2s linear infinite;
+  position: absolute;
+}
+
+.loader-ring-second {
+  width: 80px;
+  height: 80px;
+  border: 3px solid #00ffff;
+  border-top-color: transparent;
+  animation-duration: 0.9s;
+}
+
+/* ROTATING RING */
+@keyframes ringRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* CANVAS PARTICLES */
+#loader-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<!-- ===== ADVANCED LOADER WITHOUT IMAGE ===== -->
+<div id="advanced-loader">
+  <div class="loader-content">
+    <div class="loader-ring"></div>
+    <div class="loader-ring loader-ring-second"></div>
+  </div>
+  <canvas id="loader-canvas"></canvas>
+</div>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="inner">
+    <h1>Digital Meeting Solutions</h1>
+    <p>Modern, secure, and high-performance digital meeting tools that bring teams together effortlessly across locations.</p>
+  </div>
+</section>
+
+<!-- SECTION 1 -->
+<section class="section">
+  <div class="section-title">
+    <h2>Core Digital Meeting Features</h2>
+    <p>Powerful tools designed to enhance remote collaboration.</p>
+  </div>
+
+  <div class="grid-4">
+    <div class="card">
+      <i class="fa-solid fa-video"></i>
+      <h3>HD Video Conferencing</h3>
+      <p>Crystal-clear video quality ensuring effective and engaging online meetings.</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-display"></i>
+      <h3>Smart Screen Sharing</h3>
+      <p>Share presentations, documents, and apps instantly with advanced display controls.</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-headset"></i>
+      <h3>Virtual Meeting Support</h3>
+      <p>Professional tech support for all digital meeting needs and live troubleshooting.</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-comments"></i>
+      <h3>Real-time Chat</h3>
+      <p>Integrated messaging for quick communication before, during, and after meetings.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 SPLIT -->
+<section class="section">
+  <div class="split">
+    <img src="itm2.webp" alt="Digital Meeting" />
+
+    <div class="content">
+      <h3>Smarter, Faster, and More Connected Meetings</h3>
+      <p>Our digital meeting platform delivers seamless workflows, robust security features, and enterprise-grade performance. Whether you're hosting virtual workshops, training programs, or daily stand-ups, our tools ensure smooth execution.</p>
+      <p>Integrated analytics, meeting recordings, and automated follow-ups help increase productivity and save time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 (MORE CONTENT) -->
+<section class="section">
+  <div class="section-title">
+    <h2>Why Choose Our Digital Meeting Solutions?</h2>
+  </div>
+
+  <div class="grid-4">
+    <div class="card">
+      <i class="fa-solid fa-shield-halved"></i>
+      <h3>Enterprise-Grade Security</h3>
+      <p>End-to-end encrypted meetings with secure authentication to protect confidential discussions.</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-gear"></i>
+      <h3>Seamless Integrations</h3>
+      <p>Connect easily with Microsoft Teams, Zoom, Webex, Outlook, Google Meet, and more.</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-mobile-screen-button"></i>
+      <h3>Multi-Device Access</h3>
+      <p>Join meetings from mobile, laptop, or tablet with consistent experience.</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-rocket"></i>
+      <h3>Optimized Performance</h3>
+      <p>Low-latency architecture for stable, lag-free virtual communication.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '404error.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+
+
+/* ===== FADE OUT LOADER ===== */
+window.addEventListener("load", function() {
+  const loader = document.getElementById("advanced-loader");
+  loader.style.transition = "opacity 5.6s ease";
+  loader.style.opacity = "0";
+  setTimeout(() => { loader.style.display = "none"; }, 600);
+});
+
+/* ===== PARTICLE BACKGROUND ===== */
+const canvas = document.getElementById("loader-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+const particleCount = 80;
+
+for(let i=0; i<particleCount; i++){
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random()*3 + 1,
+    dx: (Math.random()-0.5) * 1,
+    dy: (Math.random()-0.5) * 1,
+    opacity: Math.random()
+  });
+}
+
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(0,170,255,${p.opacity})`;
+    ctx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if(p.x<0||p.x>canvas.width) p.dx *= -1;
+    if(p.y<0||p.y>canvas.height) p.dy *= -1;
+  });
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+/* RESIZE CANVAS ON WINDOW RESIZE */
+window.addEventListener('resize', ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Meeting Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+         /* ================= IT MEETING SECTION ================= */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.meeting-section {
+  width: 100%;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #f4f8ff, #ffffff);
+  overflow-x: hidden;
+}
+
+.meeting-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+/* LEFT CONTENT */
+.meeting-content .tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: #006aff;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.meeting-content h2 {
+  font-size: 2.6rem;
+  color: #0b1a33;
+  margin-bottom: 20px;
+}
+
+.meeting-content p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+.meeting-points {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 35px;
+}
+
+.meeting-points .point {
+  background: #ffffff;
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* BUTTON */
+.meeting-btn {
+  padding: 14px 38px;
+  background: #006aff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.meeting-btn:hover {
+  background: #004ecc;
+  transform: translateY(-4px);
+  box-shadow: 0 18px 35px rgba(0,0,0,0.25);
+}
+
+/* RIGHT IMAGE */
+.meeting-image img {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+  animation: floating 6s ease-in-out infinite;
+}
+
+/* FLOATING IMAGE */
+@keyframes floating {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+  100% { transform: translateY(0); }
+}
+
+/* ================= SCROLL ANIMATIONS ================= */
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-70px);
+  transition: all 0.9s ease;
+}
+
+.reveal-zoom {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: all 0.9s ease;
+}
+
+.reveal-left.active,
+.reveal-zoom.active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .meeting-wrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .meeting-points {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .meeting-content h2 {
+    font-size: 2rem;
+  }
+}
+/* ================= WHY IT MEETING ================= */
+
+.why-meeting {
+  width: 100%;
+  padding: 110px 20px;
+  background: #0b1a33;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.why-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+/* HEADER */
+.why-tag {
+  display: inline-block;
+  color: #00aaff;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.why-header h2 {
+  font-size: 2.6rem;
+  margin-bottom: 18px;
+}
+
+.why-header p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+/* GRID */
+.why-grid {
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+/* CARD */
+.why-card {
+  background: rgba(255,255,255,0.08);
+  padding: 40px 25px;
+  border-radius: 16px;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(6px);
+}
+
+.why-card i {
+  font-size: 2.5rem;
+  color: #00aaff;
+  margin-bottom: 18px;
+}
+
+.why-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.why-card p {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* HOVER */
+.why-card:hover {
+  /* transform: translateY(-12px) scale(1.05); */
+  transform: translateY(-10px);
+
+  background: rgba(255,255,255,0.14);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.4);
+}
+* {
+  box-sizing: border-box;
+}
+
+/* ================= ANIMATIONS ================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.9s ease;
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.9s ease;
+}
+
+.reveal.active,
+.reveal-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-header h2 {
+    font-size: 2rem;
+  }
+}
+/* ================= TESTIMONIALS ================= */
+
+.testimonial-section {
+  width: 100%;
+  padding: 110px 20px;
+  background: linear-gradient(135deg, #f4f8ff, #ffffff);
+  overflow-x: hidden;
+}
+
+.testimonial-wrapper {
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+/* HEADER */
+.testi-tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: #006aff;
+  margin-bottom: 10px;
+}
+
+.testimonial-header h2 {
+  font-size: 2.6rem;
+  margin-bottom: 16px;
+  color: #0b1a33;
+}
+
+.testimonial-header p {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 650px;
+  margin: auto;
+}
+
+/* SLIDER */
+.testimonial-slider {
+  margin-top: 70px;
+  position: relative;
+}
+
+/* CARD */
+.testimonial-card {
+  display: none;
+  background: #ffffff;
+  padding: 45px 35px;
+  border-radius: 18px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  animation: fadeSlide 0.8s ease;
+}
+
+.testimonial-card.active {
+  display: block;
+}
+
+.testimonial-text {
+  font-size: 1.05rem;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.testimonial-card h4 {
+  font-size: 1.1rem;
+  color: #0b1a33;
+  margin-bottom: 5px;
+}
+
+.testimonial-card span {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* HOVER */
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  transition: 0.4s ease;
+}
+
+/* FADE ANIMATION */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 600px) {
+  .testimonial-header h2 {
+    font-size: 2rem;
+  }
+
+  .testimonial-card {
+    padding: 35px 25px;
+  }
+}
+/* ================= CLIENT LOGOS ================= */
+
+.client-logos {
+  width: 100%;
+  padding: 100px 20px;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+.client-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+/* HEADER */
+.client-tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: #006aff;
+  margin-bottom: 10px;
+}
+
+.client-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  color: #0b1a33;
+}
+
+.client-header p {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 650px;
+  margin: auto;
+}
+
+/* MARQUEE */
+.logo-marquee {
+  margin-top: 60px;
+  overflow: hidden;
+  position: relative;
+}
+
+.logo-track {
+  display: flex;
+  width: 200%;
+  animation: scrollLogos 30s linear infinite;
+}
+.logo-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+.logo-item {
+  min-width: 180px;
+  margin: 0 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-item img {
+  max-width: 140px;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.4s ease;
+}
+
+/* HOVER */
+.logo-item img:hover {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* AUTO SCROLL */
+@keyframes scrollLogos {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .client-header h2 {
+    font-size: 2rem;
+  }
+
+  .logo-item {
+    min-width: 140px;
+  }
+
+  .logo-item img {
+    max-width: 110px;
+  }
+}
+/* ================= COUNTER SECTION ================= */
+
+.counter-section {
+  width: 100%;
+  padding: 110px 20px;
+  background: linear-gradient(135deg, #0b1a33, #00214d);
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.counter-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+.meeting-btn {
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* HEADER */
+.counter-tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: #00aaff;
+  margin-bottom: 12px;
+}
+
+.counter-header h2 {
+  font-size: 2.6rem;
+  margin-bottom: 16px;
+}
+
+.counter-header p {
+  max-width: 650px;
+  margin: auto;
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+/* GRID */
+.counter-grid {
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 35px;
+}
+
+/* BOX */
+.counter-box {
+  background: rgba(255,255,255,0.08);
+  padding: 45px 20px;
+  border-radius: 18px;
+  backdrop-filter: blur(6px);
+  transition: all 0.4s ease;
+}
+
+.counter-box h3 {
+  font-size: 3rem;
+  color: #00aaff;
+  display: inline-block;
+}
+
+.counter-box span {
+  font-size: 1.6rem;
+  margin-left: 4px;
+}
+
+.counter-box p {
+  margin-top: 15px;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+.counter-section {
+  overflow: hidden;
+}
+
+/* HOVER */
+
+.counter-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 55px rgba(0,0,0,0.45);
+}
+
+/* ================= ANIMATIONS ================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.9s ease;
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.9s ease;
+}
+
+.reveal.active,
+.reveal-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+  .counter-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .counter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .counter-header h2 {
+    font-size: 2rem;
+  }
+}
+/* ===== ADVANCED LOADER ===== */
+#advanced-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0b1a33;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.loader-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-ring {
+  width: 120px;
+  height: 120px;
+  border: 4px solid #00aaff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ringRotate 1.2s linear infinite;
+  position: absolute;
+}
+
+.loader-ring-second {
+  width: 80px;
+  height: 80px;
+  border: 3px solid #00ffff;
+  border-top-color: transparent;
+  animation-duration: 0.9s;
+}
+
+/* ROTATING RING */
+@keyframes ringRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* CANVAS PARTICLES */
+#loader-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<!-- ===== ADVANCED LOADER WITHOUT IMAGE ===== -->
+<div id="advanced-loader">
+  <div class="loader-content">
+    <div class="loader-ring"></div>
+    <div class="loader-ring loader-ring-second"></div>
+  </div>
+  <canvas id="loader-canvas"></canvas>
+</div>
+
+
+    <section class="meeting-section">
+  <div class="meeting-wrapper">
+
+    <div class="meeting-content reveal-left">
+     <span class="tag">IT MEETING SERVICES</span>
+      <h2>Smart & Secure IT Meeting Solutions</h2>
+      <p>
+        Empower your organization with advanced IT meeting services including
+        video conferencing, smart collaboration tools, and enterprise-grade
+        communication systems.
+      </p>
+
+      <div class="meeting-points">
+        <div class="point">✔ HD Video Conferencing</div>
+        <div class="point">✔ Secure Cloud Meetings</div>
+        <div class="point">✔ Smart Conference Rooms</div>
+        <div class="point">✔ 24/7 IT Support</div>
+      </div>
+
+      <a href="404error.html" class="meeting-btn">Book a Demo</a>
+
+    </div>
+
+    <div class="meeting-image reveal-zoom">
+      <img src="Itm1.webp" alt="IT Meeting Services">
+    </div>
+
+  </div>
+</section>
+<section class="why-meeting">
+  <div class="why-wrapper">
+
+    <div class="why-header reveal">
+      <span class="why-tag">WHY CHOOSE US</span>
+      <h2>Reliable & Intelligent IT Meeting Services</h2>
+      <p>
+        We help enterprises run secure, scalable, and seamless meetings
+        with advanced technology and expert IT support.
+      </p>
+    </div>
+
+    <div class="why-grid">
+
+      <div class="why-card reveal-up">
+        <i class="fa-solid fa-video"></i>
+        <h3>High Quality Video</h3>
+        <p>Crystal-clear video and audio experience for professional meetings.</p>
+      </div>
+
+      <div class="why-card reveal-up">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3>Enterprise Security</h3>
+        <p>End-to-end encryption and secure access for all meetings.</p>
+      </div>
+
+      <div class="why-card reveal-up">
+        <i class="fa-solid fa-cloud"></i>
+        <h3>Cloud Integration</h3>
+        <p>Seamless integration with cloud platforms and collaboration tools.</p>
+      </div>
+
+      <div class="why-card reveal-up">
+        <i class="fa-solid fa-headset"></i>
+        <h3>24/7 IT Support</h3>
+        <p>Always-on technical support to avoid meeting disruptions.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="testimonial-section">
+  <div class="testimonial-wrapper">
+
+    <div class="testimonial-header reveal">
+      <span class="testi-tag">TESTIMONIALS</span>
+      <h2>What Our Clients Say</h2>
+      <p>
+        Trusted by enterprises worldwide for secure and reliable IT meeting solutions.
+      </p>
+    </div>
+
+    <div class="testimonial-slider reveal-up" id="testimonialSlider">
+
+      <div class="testimonial-card active">
+        <p class="testimonial-text">
+          “Our virtual meetings became seamless and secure after adopting their
+          IT meeting services. Outstanding quality and support.”
+        </p>
+        <h4>Rajesh Kumar</h4>
+        <span>IT Manager, Enterprise Corp</span>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          “The best IT meeting experience we’ve had. Crystal clear video and
+          real-time collaboration tools.”
+        </p>
+        <h4>Anita Sharma</h4>
+        <span>Operations Head, TechSolutions</span>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          “Reliable, secure, and professional. Their support team is always
+          available when we need them.”
+        </p>
+        <h4>Vikram Singh</h4>
+        <span>CTO, CloudNet</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="client-logos">
+  <div class="client-wrapper">
+
+    <div class="client-header reveal">
+      <span class="client-tag">TRUSTED BY</span>
+      <h2>Our Global Clients</h2>
+      <p>
+        We partner with startups, enterprises, and global brands
+        to deliver reliable IT meeting solutions.
+      </p>
+    </div>
+
+    <div class="logo-marquee">
+      <div class="logo-track">
+        <div class="logo-item"><img src="Itm1.webp" alt="Client 1"></div>
+        <div class="logo-item"><img src="itm2.webp" alt="Client 2"></div>
+        <div class="logo-item"><img src="itm3.webp" alt="Client 3"></div>
+        <div class="logo-item"><img src="itm4.webp" alt="Client 4"></div>
+        <div class="logo-item"><img src="itm5.webp" alt="Client 5"></div>
+        <div class="logo-item"><img src="itm6.webp" alt="Client 6"></div>
+
+        <!-- Duplicate for smooth infinite scroll -->
+        <div class="logo-item"><img src="itm7.webp" alt="Client 1"></div>
+        <div class="logo-item"><img src="itm8.webp" alt="Client 2"></div>
+        <div class="logo-item"><img src="itms1.webp" alt="Client 3"></div>
+        <div class="logo-item"><img src="itms2.webp" alt="Client 4"></div>
+        <div class="logo-item"><img src="itms3.webp" alt="Client 5"></div>
+        <div class="logo-item"><img src="itms33.webp" alt="Client 6"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section class="counter-section">
+  <div class="counter-wrapper">
+
+    <div class="counter-header reveal">
+      <span class="counter-tag">OUR IMPACT</span>
+      <h2>Proven Results in IT Meeting Services</h2>
+      <p>
+        Delivering measurable success through secure, scalable,
+        and intelligent meeting solutions.
+      </p>
+    </div>
+
+    <div class="counter-grid">
+
+      <div class="counter-box reveal-up">
+        <h3 class="count" data-target="500">0</h3>
+        <span>+</span>
+        <p>Successful Deployments</p>
+      </div>
+
+      <div class="counter-box reveal-up">
+        <h3 class="count" data-target="120">0</h3>
+        <span>+</span>
+        <p>Enterprise Clients</p>
+      </div>
+
+      <div class="counter-box reveal-up">
+        <h3 class="count" data-target="99">0</h3>
+        <span>%</span>
+        <p>Meeting Uptime</p>
+      </div>
+
+      <div class="counter-box reveal-up">
+        <h3 class="count" data-target="24">0</h3>
+        <span>/7</span>
+        <p>Expert IT Support</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<br>
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '404error.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+
+  const meetingReveal = document.querySelectorAll('.reveal-left, .reveal-zoom');
+
+const meetingObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    }
+  });
+}, { threshold: 0.2 });
+
+meetingReveal.forEach(el => meetingObserver.observe(el));
+
+
+const whyReveal = document.querySelectorAll('.reveal, .reveal-up');
+
+const whyObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+    }
+  });
+},{ threshold: 0.2 });
+
+whyReveal.forEach(el => whyObserver.observe(el));
+
+
+/* ========= TESTIMONIAL AUTO SLIDER ========= */
+const testimonials = document.querySelectorAll('.testimonial-card');
+let index = 0;
+
+setInterval(() => {
+  testimonials[index].classList.remove('active');
+  index = (index + 1) % testimonials.length;
+  testimonials[index].classList.add('active');
+}, 4000);
+
+/* ========= SCROLL REVEAL ========= */
+const testiReveal = document.querySelectorAll('.reveal, .reveal-up');
+
+const testiObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+    }
+  });
+},{ threshold: 0.2 });
+
+testiReveal.forEach(el => testiObserver.observe(el));
+
+
+/* ========= COUNTER ANIMATION ========= */
+const counters = document.querySelectorAll('.count');
+let counterStarted = false;
+
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting && !counterStarted){
+      counterStarted = true;
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        let current = 0;
+        const increment = target / 80;
+
+        const updateCounter = () => {
+          current += increment;
+          if(current < target){
+            counter.innerText = Math.ceil(current);
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCounter();
+      });
+    }
+  });
+},{ threshold: 0.3 });
+
+const counterSection = document.querySelector('.counter-section');
+counterObserver.observe(counterSection);
+
+/* ========= SCROLL REVEAL ========= */
+const counterReveal = document.querySelectorAll('.reveal, .reveal-up');
+
+const counterRevealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+    }
+  });
+},{ threshold: 0.2 });
+
+counterReveal.forEach(el => counterRevealObserver.observe(el));
+
+
+/* ===== FADE OUT LOADER ===== */
+window.addEventListener("load", function() {
+  const loader = document.getElementById("advanced-loader");
+  loader.style.transition = "opacity 0.6s ease";
+  loader.style.opacity = "0";
+  setTimeout(() => { loader.style.display = "none"; }, 600);
+});
+
+/* ===== PARTICLE BACKGROUND ===== */
+const canvas = document.getElementById("loader-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+const particleCount = 80;
+
+for(let i=0; i<particleCount; i++){
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random()*3 + 1,
+    dx: (Math.random()-0.5) * 1,
+    dy: (Math.random()-0.5) * 1,
+    opacity: Math.random()
+  });
+}
+
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(0,170,255,${p.opacity})`;
+    ctx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if(p.x<0||p.x>canvas.width) p.dx *= -1;
+    if(p.y<0||p.y>canvas.height) p.dy *= -1;
+  });
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+/* RESIZE CANVAS ON WINDOW RESIZE */
+window.addEventListener('resize', ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+

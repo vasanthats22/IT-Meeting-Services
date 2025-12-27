@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - IT Meeting Services</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<style>
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
+body, html { width:100%; height:100%; }
+
+/* FLEX CONTAINER */
+.signup-container {
+    display:flex;
+    min-height:100vh;
+}
+.left-side {
+    flex:1;
+    background:#0077aa;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+}
+.left-side h1 { font-size:36px; }
+.right-side {
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+    background:#f5f7fa;
+}
+
+/* SIGNUP BOX */
+.signup-box {
+    width:100%;
+    max-width:400px;
+}
+.signup-box h2 {
+    text-align:center;
+    color:#0077aa;
+    margin-bottom:30px;
+    font-size:32px;
+}
+.signup-box form { display:flex; flex-direction:column; gap:15px; }
+
+/* INPUT WITH ICON */
+.input-group { position:relative; }
+.input-group i {
+    position:absolute;
+    top:50%;
+    left:15px;
+    transform: translateY(-50%);
+    color:#0077aa;
+    font-size:18px;
+}
+.input-group input {
+    width:100%;
+    padding:12px 15px 12px 45px;
+    border-radius:8px;
+    border:2px solid #ccc;
+    font-size:16px;
+    outline:none;
+    transition: all 0.3s ease;
+}
+.input-group input:focus {
+    border-color:#0077aa;
+    box-shadow:0 0 8px rgba(0,119,170,0.2);
+}
+
+/* VALIDATION MESSAGES */
+.validation-message {
+    font-size:13px;
+    color:red;
+    margin-top:-10px;
+    margin-bottom:10px;
+}
+
+/* GRADIENT BUTTON */
+.signup-box button {
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background: linear-gradient(135deg, #0077aa, #00c3ff);
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.4s;
+}
+.signup-box button:hover {
+    background: linear-gradient(135deg, #00c3ff, #0077aa);
+    transform: translateY(-3px);
+}
+
+/* TEXT LINKS */
+.signup-box p { text-align:center; font-size:14px; color:#555; }
+.signup-box p a { color:#0077aa; text-decoration:none; }
+.signup-box p a:hover { color:#00c3ff; }
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+    .signup-container { flex-direction:column; }
+    .left-side { height:200px; }
+    .left-side h1 { font-size:28px; }
+    .right-side { padding:20px; }
+}
+
+/* ===== ADVANCED LOADER ===== */
+#advanced-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0b1a33;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.loader-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-ring {
+  width: 120px;
+  height: 120px;
+  border: 4px solid #00aaff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ringRotate 1.2s linear infinite;
+  position: absolute;
+}
+
+.loader-ring-second {
+  width: 80px;
+  height: 80px;
+  border: 3px solid #00ffff;
+  border-top-color: transparent;
+  animation-duration: 0.9s;
+}
+
+/* ROTATING RING */
+@keyframes ringRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* CANVAS PARTICLES */
+#loader-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+</style>
+</head>
+<body>
+
+    <!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<!-- ===== ADVANCED LOADER WITHOUT IMAGE ===== -->
+<div id="advanced-loader">
+  <div class="loader-content">
+    <div class="loader-ring"></div>
+    <div class="loader-ring loader-ring-second"></div>
+  </div>
+  <canvas id="loader-canvas"></canvas>
+</div>
+
+
+<div class="signup-container">
+    <!-- LEFT SIDE COLOR BACKGROUND -->
+    <div class="left-side">
+        <h1>Join IT Meeting Services</h1>
+    </div>
+
+    <!-- RIGHT SIDE SIGNUP FORM -->
+    <div class="right-side">
+        <div class="signup-box">
+            <h2>Create Account</h2>
+            <form id="signup-form">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <div id="password-message" class="validation-message"></div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                </div>
+                <div id="confirm-message" class="validation-message"></div>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="login2.html">Login</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '4042.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+
+
+// Restrict name field to letters and spaces
+document.getElementById("name").addEventListener("input", function(){
+    this.value = this.value.replace(/[^A-Za-z\s]/g,'');
+});
+
+// Password validation function
+function validatePassword(password) {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+    return regex.test(password);
+}
+
+// Real-time password validation
+document.getElementById("password").addEventListener("input", function(){
+    const msg = document.getElementById("password-message");
+    if(!validatePassword(this.value)){
+        msg.textContent = "Password must be at least 8 chars, include uppercase, lowercase, number & special char.";
+    } else {
+        msg.textContent = "";
+    }
+});
+
+// Real-time confirm password validation
+document.getElementById("confirm-password").addEventListener("input", function(){
+    const msg = document.getElementById("confirm-message");
+    const password = document.getElementById("password").value;
+    if(this.value !== password){
+        msg.textContent = "Passwords do not match.";
+    } else {
+        msg.textContent = "";
+    }
+});
+
+// Form submission
+document.getElementById("signup-form").addEventListener("submit", function(e){
+    e.preventDefault(); // prevent default form submission
+    const password = document.getElementById("password").value.trim();
+    const confirm = document.getElementById("confirm-password").value.trim();
+
+    if(!validatePassword(password) || password !== confirm){
+        return; // do not submit if invalid
+    }
+
+    // Redirect to 404error.html on successful validation
+    window.location.href = "4042.html";
+});
+
+
+/* ===== FADE OUT LOADER ===== */
+window.addEventListener("load", function() {
+  const loader = document.getElementById("advanced-loader");
+  loader.style.transition = "opacity 0.6s ease";
+  loader.style.opacity = "0";
+  setTimeout(() => { loader.style.display = "none"; }, 600);
+});
+
+/* ===== PARTICLE BACKGROUND ===== */
+const canvas = document.getElementById("loader-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+const particleCount = 80;
+
+for(let i=0; i<particleCount; i++){
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random()*3 + 1,
+    dx: (Math.random()-0.5) * 1,
+    dy: (Math.random()-0.5) * 1,
+    opacity: Math.random()
+  });
+}
+
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(0,170,255,${p.opacity})`;
+    ctx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if(p.x<0||p.x>canvas.width) p.dx *= -1;
+    if(p.y<0||p.y>canvas.height) p.dy *= -1;
+  });
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+/* RESIZE CANVAS ON WINDOW RESIZE */
+window.addEventListener('resize', ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+
+</script>
+
+</body>
+</html>

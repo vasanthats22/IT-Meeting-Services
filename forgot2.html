@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forgot Password - IT Meeting Services</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+*{margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif;}
+body,html{width:100%; height:100%;}
+
+/* PAGE LAYOUT */
+.forgot-container{
+    display:flex;
+    min-height:100vh;
+}
+.left-side{
+    flex:1;
+    background:#0077aa;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+.left-side h1{
+    font-size:36px;
+}
+.right-side{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f5f7fa;
+    padding:40px;
+}
+
+/* FORM BOX */
+.forgot-box{
+    width:100%;
+    max-width:380px;
+}
+.forgot-box h2{
+    text-align:center;
+    font-size:30px;
+    color:#0077aa;
+    margin-bottom:20px;
+}
+.forgot-box p{
+    text-align:center;
+    color:#444;
+    margin-bottom:20px;
+    font-size:14px;
+}
+
+.input-group{
+    position:relative;
+}
+.input-group i{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#0077aa;
+    font-size:18px;
+}
+.input-group input{
+    width:100%;
+    padding:12px 15px 12px 45px;
+    border:2px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    transition:0.3s;
+}
+.input-group input:focus{
+    border-color:#0077aa;
+    box-shadow:0 0 6px rgba(0,119,170,0.2);
+}
+
+.validation-message{
+    font-size:13px;
+    color:red;
+    margin-top:-10px;
+    margin-bottom:10px;
+}
+
+/* SUBMIT BUTTON */
+.forgot-box button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    margin-top:10px;
+    background:linear-gradient(135deg,#0077aa,#00c3ff);
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+.forgot-box button:hover{
+    background:linear-gradient(135deg,#00c3ff,#0077aa);
+    transform:translateY(-3px);
+}
+
+/* BACK TO LOGIN LINK */
+.forgot-box a{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    color:#0077aa;
+    text-decoration:none;
+    font-size:14px;
+}
+.forgot-box a:hover{
+    color:#00c3ff;
+}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+    .forgot-container{flex-direction:column;}
+    .left-side{height:200px;}
+    .left-side h1{font-size:28px;}
+}
+
+/* ===== ADVANCED LOADER ===== */
+#advanced-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0b1a33;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.loader-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-ring {
+  width: 120px;
+  height: 120px;
+  border: 4px solid #00aaff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ringRotate 1.2s linear infinite;
+  position: absolute;
+}
+
+.loader-ring-second {
+  width: 80px;
+  height: 80px;
+  border: 3px solid #00ffff;
+  border-top-color: transparent;
+  animation-duration: 0.9s;
+}
+
+/* ROTATING RING */
+@keyframes ringRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* CANVAS PARTICLES */
+#loader-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+</style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<!-- ===== ADVANCED LOADER WITHOUT IMAGE ===== -->
+<div id="advanced-loader">
+  <div class="loader-content">
+    <div class="loader-ring"></div>
+    <div class="loader-ring loader-ring-second"></div>
+  </div>
+  <canvas id="loader-canvas"></canvas>
+</div>
+
+<div class="forgot-container">
+
+    <!-- LEFT SIDE -->
+    <div class="left-side">
+        <h1>Password Recovery</h1>
+    </div>
+
+    <!-- RIGHT SIDE FORM -->
+    <div class="right-side">
+        <div class="forgot-box">
+            <h2>Forgot Password?</h2>
+            <p>Enter your registered email and we'll help you reset your password.</p>
+
+            <form id="forgot-form">
+
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Enter Email" required>
+                </div>
+                <div id="email-msg" class="validation-message"></div>
+
+                <button type="submit">Send Reset Link</button>
+            </form>
+
+            <a href="login2.html">Back to Login</a>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '4042.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+
+
+
+// EMAIL VALIDATION
+document.getElementById("email").addEventListener("input", function(){
+    const msg = document.getElementById("email-msg");
+    const email = this.value;
+
+    if(!email.includes("@") || !email.includes(".")){
+        msg.textContent = "Enter a valid email address.";
+    } else {
+        msg.textContent = "";
+    }
+});
+
+// SUBMIT HANDLING
+document.getElementById("forgot-form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    if(!email.includes("@") || !email.includes(".")){
+        return;
+    }
+
+    // Redirect after valid email
+    window.location.href = "4042.html";
+});
+
+
+/* ===== FADE OUT LOADER ===== */
+window.addEventListener("load", function() {
+  const loader = document.getElementById("advanced-loader");
+  loader.style.transition = "opacity 5.6s ease";
+  loader.style.opacity = "0";
+  setTimeout(() => { loader.style.display = "none"; }, 600);
+});
+
+/* ===== PARTICLE BACKGROUND ===== */
+const canvas = document.getElementById("loader-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+const particleCount = 80;
+
+for(let i=0; i<particleCount; i++){
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random()*3 + 1,
+    dx: (Math.random()-0.5) * 1,
+    dy: (Math.random()-0.5) * 1,
+    opacity: Math.random()
+  });
+}
+
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(0,170,255,${p.opacity})`;
+    ctx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if(p.x<0||p.x>canvas.width) p.dx *= -1;
+    if(p.y<0||p.y>canvas.height) p.dy *= -1;
+  });
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+/* RESIZE CANVAS ON WINDOW RESIZE */
+window.addEventListener('resize', ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+
+</script>
+
+</body>
+</html>

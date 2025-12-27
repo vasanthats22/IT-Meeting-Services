@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 Error - IT Meeting Services</title>
+<style>
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
+
+/* BODY NORMAL FLOW */
+html, body { width:100%; background:#f5f7fa; }
+
+/* HEADER / FOOTER */
+#header-placeholder, #footer-placeholder { width:100%; }
+
+/* ERROR CONTAINER */
+.error-container {
+    text-align:center;
+    padding:120px 20px 80px 20px; /* Top for header, bottom for footer */
+    min-height: calc(100vh - 200px); /* Leave space for header + footer */
+}
+.error-container h1 {
+    font-size:120px;
+    color:#0077aa;
+    margin-bottom:20px;
+}
+.error-container h2 {
+    font-size:28px;
+    margin-bottom:20px;
+    color:#333;
+}
+.error-container p {
+    font-size:18px;
+    margin-bottom:30px;
+    color:#555;
+}
+.error-container a {
+    display:inline-block;
+    padding:12px 30px;
+    background:#0077aa;
+    color:#fff;
+    text-decoration:none;
+    font-size:16px;
+    border-radius:8px;
+    transition:0.3s;
+}
+.error-container a:hover {
+    background:#00c3ff;
+    color:#fff;
+    transform:translateY(-3px);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .error-container h1 { font-size:80px; }
+    .error-container h2 { font-size:22px; }
+    .error-container p { font-size:16px; }
+}
+
+/* ===== ADVANCED LOADER ===== */
+#advanced-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0b1a33;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.loader-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-ring {
+  width: 120px;
+  height: 120px;
+  border: 4px solid #00aaff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ringRotate 1.2s linear infinite;
+  position: absolute;
+}
+
+.loader-ring-second {
+  width: 80px;
+  height: 80px;
+  border: 3px solid #00ffff;
+  border-top-color: transparent;
+  animation-duration: 0.9s;
+}
+
+/* ROTATING RING */
+@keyframes ringRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* CANVAS PARTICLES */
+#loader-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+<!-- ===== ADVANCED LOADER WITHOUT IMAGE ===== -->
+<div id="advanced-loader">
+  <div class="loader-content">
+    <div class="loader-ring"></div>
+    <div class="loader-ring loader-ring-second"></div>
+  </div>
+  <canvas id="loader-canvas"></canvas>
+</div>
+
+<!-- ERROR SECTION -->
+<div class="error-container">
+    <h1>404</h1>
+    <h2>Page Not Found</h2>
+    <p>Sorry, the page you are looking for does not exist or has been moved.</p>
+    <a href="home2.html">Go Back Home</a>
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>    
+
+<script>
+  // Load header
+  fetch('header2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+
+      // Header Interactions
+      const menuBtn = document.querySelector('.menu-btn');
+      const homeArrow = document.querySelector('.home-link span');
+
+      menuBtn?.addEventListener('click', () => {
+        document.getElementById('navBar').classList.toggle('active');
+      });
+
+      homeArrow?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = event.target.closest('li');
+        li.classList.toggle('show-submenu');
+      });
+    });
+
+  // Load footer
+  fetch('footer2.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+
+      // Subscribe button JS (after footer is loaded)
+      const subscribeBtn = document.getElementById('subscribeButton');
+      const emailInput = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      subscribeBtn?.addEventListener('click', function(e) {
+        const email = emailInput.value.trim();
+        const valid = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (valid.test(email)) {
+          // Redirect to 404error.html only if email is valid
+          window.location.href = '4042.html';
+        } else {
+          e.preventDefault();
+          emailError.style.display = 'block';
+          emailInput.style.border = '2px solid #ff7a00';
+        }
+      });
+
+      emailInput?.addEventListener('input', function() {
+        emailError.style.display = 'none';
+        emailInput.style.border = 'none';
+      });
+    });
+
+  // Animate service boxes on scroll
+  const serviceBoxes = document.querySelectorAll('.service-box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if(entry.isIntersecting){
+        entry.target.style.animation = `fadeInUp 0.8s forwards`;
+        entry.target.style.animationDelay = `${index * 0.2}s`;
+      }
+    });
+  }, {threshold:0.2});
+  serviceBoxes.forEach(box => observer.observe(box));
+
+
+/* ===== FADE OUT LOADER ===== */
+window.addEventListener("load", function() {
+  const loader = document.getElementById("advanced-loader");
+  loader.style.transition = "opacity 5.6s ease";
+  loader.style.opacity = "0";
+  setTimeout(() => { loader.style.display = "none"; }, 600);
+});
+
+/* ===== PARTICLE BACKGROUND ===== */
+const canvas = document.getElementById("loader-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+const particleCount = 80;
+
+for(let i=0; i<particleCount; i++){
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random()*3 + 1,
+    dx: (Math.random()-0.5) * 1,
+    dy: (Math.random()-0.5) * 1,
+    opacity: Math.random()
+  });
+}
+
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(0,170,255,${p.opacity})`;
+    ctx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if(p.x<0||p.x>canvas.width) p.dx *= -1;
+    if(p.y<0||p.y>canvas.height) p.dy *= -1;
+  });
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+/* RESIZE CANVAS ON WINDOW RESIZE */
+window.addEventListener('resize', ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+
+
+</script>
+</body>
+</html>
